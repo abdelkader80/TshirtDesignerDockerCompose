@@ -1,0 +1,39 @@
+version: '3'
+services:
+  myapp-mysql:
+    image: mysql:8
+    environment:
+      - MYSQL_ROOT_PASSWORD=test
+      - MYSQL_DATABASE=tshirt
+    ports:
+      - 3306:3306
+    volumes:
+      - ./:/var/lib/mysql
+  myapp-main:
+    image: abdou80/back_v:02
+    depends_on:
+      - myapp-mysql
+    ports:
+      - 8080:8080
+    environment:
+      - SPRING_DATASOURCE_PASSWORD=test
+      - SPRING_DATASOURCE_URL=jdbc:mysql://myapp-mysql:3306/tshirt?serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL8Dialect
+  angular-host:
+      image: angulartshirthost:v1
+      depends_on:
+        - myappmain
+      ports: 
+        - '4200:4200'
+  angular-mfe1:
+      image: angulartshirtmfe1:v1
+      depends_on:
+        - myappmain
+      ports: 
+        - '5000:5000'
+    
+     
+  
+
