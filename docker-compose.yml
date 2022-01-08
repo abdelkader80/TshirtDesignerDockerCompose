@@ -14,9 +14,10 @@ services:
     depends_on:
       - myapp-mysql
     ports:
-      - 8080:8080
+      - 8081:8081
     environment:
       - SPRING_DATASOURCE_PASSWORD=test
+      - SEVER_PORT=8081
       - SPRING_DATASOURCE_URL=jdbc:mysql://myapp-mysql:3306/tshirt?serverTimezone=UTC
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
