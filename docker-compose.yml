@@ -27,13 +27,13 @@ services:
       depends_on:
         - myapp-main
       ports: 
-        - '8082:4200'
+        - '5000:5000'
   angular-mfe1:
       image: abdou80/tshirtdesignerhost_v:latest
       depends_on:
         - myapp-main
       ports: 
-        - '5000:5000'
+        - '4200:4200'
     
      
   
