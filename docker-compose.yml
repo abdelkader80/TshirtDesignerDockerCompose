@@ -8,7 +8,7 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - ./:/var/lib/mysql
+      - /home/ubuntu/mysqldata:/var/lib/mysql
   myapp-main:
     image: abdou80/tshirtdesigner_back:latest
     depends_on:
